@@ -1,5 +1,5 @@
 #!/usr/bin/env python3.7
-"""LibSEA Base Setup: Jerod Gawne, 2019.03.14 <https://github.com/jerodg/>"""
+"""LibSEA ActiveDirectory Setup: Jerod Gawne, 2019.03.14 <https://github.com/jerodg/>"""
 import logging
 import sys
 import traceback
@@ -7,7 +7,7 @@ import traceback
 import setuptools
 
 logger = logging.getLogger(__name__)
-name = 'libsea_base'
+name = 'libsea_activedirectory'
 
 
 def readme() -> str:
@@ -17,9 +17,9 @@ def readme() -> str:
 
 if __name__ == '__main__':
     try:
-        setuptools.setup(name='libsea_base',
+        setuptools.setup(name='libsea_activedirectory',
                          version='1.0a0.dev0',
-                         description='Base API Client Library',
+                         description='ActiveDirectory API Client Library',
                          long_description=readme(),
                          long_description_content_type='text/markdown',
                          classifiers=[
@@ -36,7 +36,7 @@ if __name__ == '__main__':
                              'Programming Language :: Python',
                              'Topic :: Utilities'],
                          keywords='api client base',
-                         url='https://github.info53.com/Fifth-Third/SEA_LibSEA_base',
+                         url='https://github.info53.com/Fifth-Third/SEA_LibSEA_ActiveDirectory',
                          author='Jerod Gawne',
                          author_email='jerodgawne@gmail.com',
                          license='None/Proprietary',
