@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = false
+name = "pypi"
+
+
+[packages]
+tenacity = "*"
+jgutils = "*"
+tqdm = "*"
+ldap3 = "*"
+
+
+[dev-packages]
+tenacity = "*"
+jgutils = "*"
+tqdm = "*"
+ldap3 = "*"
+pytest = "*"
+wheel = "*"
+setuptools = "*"
+requests = "*"
+aiohttp = "*"
+aiodns = "*"
+cchardet = "*"
+
+
+[requires]
+python_version = "3.7"
