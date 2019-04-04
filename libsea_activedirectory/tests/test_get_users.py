@@ -3,6 +3,7 @@
 import asyncio
 import logging
 import sys
+import time
 import traceback
 
 from os.path import (abspath, dirname)
@@ -31,19 +32,23 @@ SEM: int = 100
 
 with ActiveDirectoryApi(ROOT, SEM) as adapi:
     def test_get_users():
+        ts = time.perf_counter()
         loop = asyncio.get_event_loop()
-        results = loop.run_until_complete(adapi.fetch_ad())
+        results = loop.run_until_complete(adapi.get_users())
         # print('\nresults: ', results)  # debug
 
         assert type(results) is dict
         assert results['success'] is not None
         assert results['failure'][0] is None
 
+        te = time.perf_counter()
         print(format_banner(f'Test: Get Users'))
-        print('Top 5 Get Users Success Result:')
+        print(f'Top 5 Success Results: {len(results["success"])}')
         print(*results['success'][:5], sep='\n')
-        print('\nTop 5 Get Users Failure Result:')
+        print(f'\nTop 5 Failure Results: {len(results["failure"])}')
         print(*results['failure'][:5], sep='\n')
+        print(f'Processed {len(results["success"])} records in {round((te - ts) / 60, 2)} minutes.')
+
 
 if __name__ == '__main__':
     try:
