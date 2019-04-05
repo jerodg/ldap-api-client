@@ -4,7 +4,9 @@ import logging
 import sys
 import traceback
 
-___all___ = ['test_get_users']
+from libsea_activedirectory.tests import test_get_computers, test_get_users
+
+___all___ = ['test_get_users', 'test_get_computers']
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
