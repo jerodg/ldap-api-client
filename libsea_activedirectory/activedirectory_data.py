@@ -13,8 +13,9 @@ DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
+
 @dataclass()
-class ADUser:
+class User:
     ident: str
     name: str = None
     memberof: Any = None
@@ -38,6 +39,18 @@ class ADUser:
             self.title = ';'.join([t.lower() for t in self.title])
         else:
             self.title = self.title.lower()
+
+    def dict(self):
+        return dict(sorted({k: v for k, v in self.__dict__.items() if v is not None}.items()))
+
+
+@dataclass()
+class Computer:
+    name: str
+    last_logon: str
+
+    def __post_init__(self):
+        pass
 
     def dict(self):
         return dict(sorted({k: v for k, v in self.__dict__.items() if v is not None}.items()))
