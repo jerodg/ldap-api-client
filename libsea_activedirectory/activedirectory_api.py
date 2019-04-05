@@ -20,10 +20,7 @@ NFO = logger.isEnabledFor(logging.INFO)
 class ActiveDirectoryApi(ApiBase):
     ROOT: str = dirname(abspath(__file__))
     SEM: int = 100
-    USER_ATTR: List[str] = ['badPwdCount', 'cn', 'department', 'displayName', 'manager', 'memberOf', 'title']
-    COMPUTER_ATTR: List[str] = ['Name', 'lastLogonTimestamp']
     AD_REPL: List[str] = ['CN=', 'DN=', 'OU=', 'DC=']
-    DOMAINS: List[str] = ['dm0001', 'dm0007']
 
     def __init__(self, root: str, sem: Optional[int] = None):
         ApiBase.__init__(self, root=root or self.ROOT, sem=sem or self.SEM, parent=basename(argv[0][:-3]))
@@ -71,7 +68,7 @@ class ActiveDirectoryApi(ApiBase):
            after=after_log(logger, logging.DEBUG),
            stop=stop_after_attempt(7),
            before_sleep=before_sleep_log(logger, logging.DEBUG))
-    async def get_computers(self, last_logon: int = 7, domains: List[str] = None) -> dict:
+    async def get_computers(self) -> dict:
         with Connection(self.adserver, auto_bind=True, user=getenv('AD_USER'),
                         password=getenv('AD_PASS'),
                         authentication=NTLM) as adconn:
