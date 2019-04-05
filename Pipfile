@@ -3,27 +3,26 @@ url = "https://pypi.org/simple"
 verify_ssl = false
 name = "pypi"
 
+[[source]]
+url = "http://slgramihqaims90.info53.com:3030/simple"
+verify_ssl = false
+name = "seapypi"
 
 [packages]
+libsea_base = "*"
 tenacity = "*"
 jgutils = "*"
-tqdm = "*"
 ldap3 = "*"
-
+delorean = "*"
 
 [dev-packages]
-tenacity = "*"
-jgutils = "*"
-tqdm = "*"
-ldap3 = "*"
 pytest = "*"
 wheel = "*"
 setuptools = "*"
 requests = "*"
-aiohttp = "*"
-aiodns = "*"
-cchardet = "*"
-
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
