@@ -75,21 +75,7 @@ class ActiveDirectoryApi(ApiBase):
             entries = adconn.extend.standard.paged_search('dc=dm0001,dc=info53,dc=com', '(objectClass=computer)',
                                                           attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], paged_size=100)
 
-            # for entry in entries:
-            #     try:
-            #         e = entry['attributes']
-            #         last_log = e['lastLogonTimestamp']
-            #     except KeyError:
-            #         print('entry has no attributes:\n\t', entry)
-            #         continue
-            #
-            #     try:
-            #         if last_log >= last_week:
-            #             computers.append(Computer(name=e['name'], last_logon=last_log).dict())
-            #     except TypeError:
-            #         continue
-
-            return await self.process_results(results=[e['attributes'] for e in entries])
+        return await self.process_results(results=[e['attributes'] for e in entries])
 
 
 if __name__ == '__main__':

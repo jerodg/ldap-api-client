@@ -18,7 +18,7 @@ def readme() -> str:
 if __name__ == '__main__':
     try:
         setuptools.setup(name='libsea_activedirectory',
-                         version='1.0a1.dev0',
+                         version='1.0a1.dev1',
                          description='ActiveDirectory API Client Library',
                          long_description=readme(),
                          long_description_content_type='text/markdown',
