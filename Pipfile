@@ -8,21 +8,22 @@ url = "http://slgramihqaims90.info53.com:3030/simple"
 verify_ssl = false
 name = "seapypi"
 
+[dev-packages]
+mkdocs = "*"
+mkdocs-material = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-asyncio = "*"
+setuptools = "*"
+
 [packages]
-libsea_base = "*"
+#libsea_base = "*"
 tenacity = "*"
 jgutils = "*"
 ldap3 = "*"
 delorean = "*"
-
-[dev-packages]
-pytest = "*"
-wheel = "*"
-setuptools = "*"
-requests = "*"
+better-exceptions = "*"
 
 [requires]
 python_version = "3.7"
 
-[pipenv]
-allow_prereleases = true
