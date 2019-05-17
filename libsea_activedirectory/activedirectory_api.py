@@ -1,14 +1,14 @@
 #!/usr/bin/env python3.7
-"""ActiveDirectory API: Jerod Gawne, 2019.02.01 <https://github.com/jerodg>"""
+"""LibSEA: ActiveDirectory API
+   Jerod Gawne, 2019.02.01 <https://github.com/jerodg>"""
 import logging.config
-from sys import argv, exc_info
-from traceback import print_exception
-from typing import List, Optional
-
 from ldap3 import ALL, ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES, Connection, NTLM, Server
 from os import getenv
 from os.path import abspath, basename, dirname
+from sys import argv, exc_info
 from tenacity import after_log, before_sleep_log, retry, retry_if_exception_type, stop_after_attempt, wait_random_exponential
+from traceback import print_exception
+from typing import List, Optional
 
 from libsea_base.base_api import ApiBase
 
@@ -30,7 +30,6 @@ class ActiveDirectoryApi(ApiBase):
         return self
 
     def __aexit__(self, exc_type, exc_val, exc_tb):
-        self.cache.sync()
         ApiBase.__exit__(self, exc_type, exc_val, exc_tb)
 
     @retry(retry=retry_if_exception_type(ConnectionResetError),
@@ -44,22 +43,6 @@ class ActiveDirectoryApi(ApiBase):
                         authentication=NTLM) as adconn:
             entries = adconn.extend.standard.paged_search('dc=dm0001,dc=info53,dc=com', '(objectClass=person)',
                                                           attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], paged_size=100)
-
-        # for entry in entries:
-        #     e = entry['attributes']
-        #     ident = e['cn']
-        #     name = e['displayName'] if e['displayName'] else ''
-        #     memberof = set(rpl(''.join(e['memberOf']), self.AD_REPL, '').split(','))
-        #     department = [d.lower() for d in e['department']] if type(e['department']) is list else e['department']
-        #     manager = rpl(''.join(e['manager']), self.AD_REPL, '').split(',')[0].lower()
-        #     title = e['title']
-        #
-        #     users.append(User(ident=ident,
-        #                       name=name,
-        #                       memberof=memberof,
-        #                       department=department,
-        #                       manager=manager,
-        #                       title=title).dict())
 
         return await self.process_results(results=[e['attributes'] for e in entries])
 

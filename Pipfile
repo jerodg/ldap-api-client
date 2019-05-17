@@ -14,16 +14,19 @@ mkdocs-material = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-asyncio = "*"
+requests = "*"
 setuptools = "*"
+ujson = "*"  # for libsea_base (remove for production)
 
 [packages]
+aiohttp = "*"
+aiodns = "*"
+better-exceptions = "*"
+cchardet = "*"
+delorean = "*"
+ldap3 = "*"
 #libsea_base = "*"
 tenacity = "*"
-jgutils = "*"
-ldap3 = "*"
-delorean = "*"
-better-exceptions = "*"
 
 [requires]
 python_version = "3.7"
-
