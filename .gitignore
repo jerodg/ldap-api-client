@@ -142,4 +142,5 @@ fabric.properties
 pyvenv.cfg
 pip-selfcheck.json
 Pipfile.lock
-/libsea_base
+
+/sealib_base

@@ -1,0 +1,4 @@
+site_name: SEALib_McAfee EPO
+nav:
+    - Home: index.md
+theme: readthedocs
