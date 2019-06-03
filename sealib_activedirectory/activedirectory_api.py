@@ -10,27 +10,27 @@ from tenacity import after_log, before_sleep_log, retry, retry_if_exception_type
 from traceback import print_exception
 from typing import List, Optional
 
-from libsea_base.base_api import ApiBase
+from sealib_base.base_api import BaseApi
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
-class ActiveDirectoryApi(ApiBase):
+class ActiveDirectoryApi(BaseApi):
     ROOT: str = dirname(abspath(__file__))
     SEM: int = 100
     AD_REPL: List[str] = ['CN=', 'DN=', 'OU=', 'DC=']
 
-    def __init__(self, root: str, sem: Optional[int] = None):
-        ApiBase.__init__(self, root=root or self.ROOT, sem=sem or self.SEM, parent=basename(argv[0][:-3]))
+    def __init__(self):
+        BaseApi.__init__(self)
         self.adserver: Server = Server(getenv('AD_HOST'), use_ssl=True, get_info=ALL)
 
     def __aenter__(self):
         return self
 
     def __aexit__(self, exc_type, exc_val, exc_tb):
-        ApiBase.__exit__(self, exc_type, exc_val, exc_tb)
+        BaseApi.__exit__(self, exc_type, exc_val, exc_tb)
 
     @retry(retry=retry_if_exception_type(ConnectionResetError),
            wait=wait_random_exponential(multiplier=1.25, min=3, max=60),

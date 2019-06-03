@@ -138,9 +138,9 @@ fabric.properties
 [Ll]ib
 [Ll]ib64
 [Ll]ocal
-[Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
 Pipfile.lock
 
-/sealib_base
+sealib_base/
+site/
