@@ -1,4 +1,28 @@
-site_name: SEALib_McAfee EPO
+copyright: Copyright (c) 2019. Fifth Third Bancorp
+dev_addr: 0.0.0.0:8080
+google_analytics: null
+markdown_extensions:
+    - smarty:
+        smart_quotes: False
+        smart_angled_quotes: True
+    - pymdownx.tasklist
+    - pymdownx.smartsymbols
+    - pymdownx.details
+    - toc:
+          permalink: True
 nav:
-    - Home: index.md
-theme: readthedocs
+- Home: 'index.md'
+remote_branch: gh-pages
+remote_name: origin
+repo_url: https://github.info53.com/Fifth-Third/sea_lib_activedirectory
+repo_name: GitHub Enterprise
+site_author: Jerod Gawne, Holly Fox
+site_description: SEALib ActiveDirectory (ldap)
+site_name: SEALib ActiveDirectory
+site_url: https://github.info53.com/pages/Fifth-Third/sea_lib_activedirectory/
+strict: true
+theme:
+    name: material
+    palette:
+        primary: 'indigo'
+        accent: 'green'
