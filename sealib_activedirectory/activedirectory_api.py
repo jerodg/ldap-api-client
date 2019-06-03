@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/scripts/env python3.7
 """LibSEA: ActiveDirectory API
    Jerod Gawne, 2019.02.01 <https://github.com/jerodg>"""
 import logging.config

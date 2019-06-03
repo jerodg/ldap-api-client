@@ -7,22 +7,17 @@ import sys
 import traceback
 
 logger = logging.getLogger(__name__)
-name = 'libsea_activedirectory'
-
-
-# todo: create documentation
-# todo: create tests
-# todo: rewrite readme in markdown
+name = 'sealib_activedirectory'
 
 def readme() -> str:
-    with open('README.adoc') as f:
+    with open('README.md') as f:
         return f.read()
 
 
 if __name__ == '__main__':
     try:
-        setuptools.setup(name='libsea_activedirectory',
-                         version='1.0b0.dev0',
+        setuptools.setup(name='sealib_activedirectory',
+                         version='1.0b0.dev1',
                          description='ActiveDirectory API Client Library',
                          long_description=readme(),
                          long_description_content_type='text/markdown',
@@ -39,7 +34,7 @@ if __name__ == '__main__':
                                       'Programming Language :: Python',
                                       'Topic :: Utilities'],
                          keywords='api client base',
-                         url='https://github.info53.com/Fifth-Third/SEA-LibSEA_ActiveDirectory',
+                         url='https://github.info53.com/Fifth-Third/sea_lib_activedirectory',
                          author='Jerod Gawne',
                          author_email='jerodgawne@gmail.com',
                          license='Other/Proprietary',
@@ -53,6 +48,6 @@ if __name__ == '__main__':
                          entry_points={'console_scripts': []},
                          python_requires='~=3.7',
                          project_urls={
-                             'Documentation': 'https://github.info53.com/Fifth-Third/SEA-LibSEA_ActiveDirectory/tree/master/docs'})
+                             'Documentation': 'http://slgramihqaims90.info53.com:3333/docs/sealib_activdirectory'})
     except Exception as excp:
         logger.exception(traceback.print_exception(*sys.exc_info()))

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/scripts/env python3.7
 """Active Directory API Data: Jerod Gawne 2019.02.20 <https://github.com/jerodg>"""
 import logging
 from dataclasses import dataclass

@@ -1,10 +1,10 @@
-#!/usr/bin/env python3.7
+#!/usr/scripts/env python3.7
 """LibSEA Base Tests Init: Jerod Gawne, 2019.03.14 <https://github.com/jerodg/>"""
 import logging
 import sys
 import traceback
 
-from libsea_activedirectory.tests import test_get_computers, test_get_users
+from sealib_activedirectory.tests import test_get_computers, test_get_users
 
 ___all___ = ['test_get_users', 'test_get_computers']
 

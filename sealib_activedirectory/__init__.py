@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/scripts/env python3.7
 """LibSEA Base Init: Jerod Gawne, 2019.03.14 <https://github.com/jerodg/>"""
 import logging
 import sys

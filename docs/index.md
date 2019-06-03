@@ -1,15 +1,16 @@
-     ___  ___    _    _  _  _        __  __        _     __               ___  ___   ___  
-    / __|| __|  /_\  | |(_)| |__    |  \/  | __   /_\   / _| ___  ___    | __|| _ \ / _ \ 
-    \__ \| _|  / _ \ | || || '_ \   | |\/| |/ _| / _ \ |  _|/ -_)/ -_)   | _| |  _/| (_) |
-    |___/|___|/_/ \_\|_||_||_.__/___|_|  |_|\__|/_/ \_\|_|  \___|\___|___|___||_|   \___/ 
-                                |___|                                |___|                                                
+     ___  ___    _    _  _  _          _        _    _            ___   _                _                   
+    / __|| __|  /_\  | |(_)| |__      /_\   __ | |_ (_)__ __ ___ |   \ (_) _ _  ___  __ | |_  ___  _ _  _  _ 
+    \__ \| _|  / _ \ | || || '_ \    / _ \ / _||  _|| |\ V // -_)| |) || || '_|/ -_)/ _||  _|/ _ \| '_|| || |
+    |___/|___|/_/ \_\|_||_||_.__/___/_/ \_\\__| \__||_| \_/ \___||___/ |_||_|  \___|\__| \__|\___/|_|   \_, |
+                                |___|                                                                   |__/ 
+                              
 ![platform](https://img.shields.io/badge/platform-Linux-blue.svg)
 ![python](https://img.shields.io/badge/python-3.7%2B-blue.svg)
 ![license](https://img.shields.io/badge/license-Proprietary-red.svg)
 ![88%](https://img.shields.io/badge/coverage-88%25-yellowgreen.svg)
 
 ## Purpose                                  
-McAfee EPO REST client API module.
+ActiveDirectory REST client API module.
 
 ## Owner
 Manager of Security, Engineering, and Automation
@@ -25,23 +26,21 @@ All files/folders are owned by functional account 'infosecintegration'.
 ### Configuration
 #### Development
     /home/infosecintegration/.dev_config/
-        .base.sh
-        .mcafee_epo.sh
+        .sealib_base.sh
+        .sealib_activedirectory.sh
 
 #### Production
-    /home/infosecintegration/.prod_config/
-        .base.sh
-        .mcafee_epo.sh
+None
 
 ## Backup
 Code is stored in version control (Github Enterprise) and as such no specific DR environment is required.
 
 ## Installation
 ### Development
-    pipenv install sealib_mcafee_epo --dev
+    pipenv install sealib_activedirectory --dev
     
 ### Production
-    pipenv install sealib_mcafee_epo
+    pipenv install sealib_activedirectory
 
 ## Upgrade
 ### Development
@@ -51,7 +50,15 @@ Code is stored in version control (Github Enterprise) and as such no specific DR
     pipenv update
     
 ## Firewall
-Outbound LAN on port 8443 (https)
+### LAN
+|Port|Description|Protocol|
+|---|---|---|
+|389|LDAP|TCP/UDP|
+|636|LDAP Over SSL/TLS|TCP/UDP|
+|3268|Global Catalog|TCP/UDP|
+
+### WAN
+None
 
 ## Troubleshooting
 None
@@ -60,23 +67,21 @@ None
 None
 
 ## Environment Variables
-MC_URI -> Base McAfee EPO URI
-MC_URU_NEW -> Base McAfee EPO URI for New Server
-MC_USER -> Username
-MC_PASS -> Password
+AD_USER -> ActiveDirectory User With Read Permission
+AD_PASS -> Password
+AD_HOST -> Hostname for AD server to connect to
 
 ## Location
 
 ### Development
     slgramihqaims90.info53.com
-        /sea_dev/sealib_mcafee_epo
+        /sea_dev/sea_lib_activedirectory
         
 ### Production
-    slgramihqaims90.info53.com
-        /sea_prod/sealib_mcafee_epo
+None
 
 ### Source
-https://github.info53.com/Fifth-Third/SEA-Lib_McAfee_EPO
+https://github.info53.com/Fifth-Third/sea_lib_activedirectory
 
 ### PyPi
 #### Development
@@ -90,10 +95,10 @@ TBD
 
 ## Tests
 ### Development
-    pytest --cov /sea_dev/sealib_mcafee_epo/sealib_mcafee_epo/
+    pytest --cov /sea_dev/sea_lib_activedirectory/sealib_activedirectory/
 
 ### Production
-    pytest --cov /sea_prod/sealib_mcafee_epo/sealib_mcafee_epo/
+None
 
 ## Project layout
     docs/
