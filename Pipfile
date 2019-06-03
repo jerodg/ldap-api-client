@@ -11,12 +11,13 @@ name = "seapypi"
 [dev-packages]
 mkdocs = "*"
 mkdocs-material = "*"
+pymdown-extensions = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-asyncio = "*"
-requests = "*"
 setuptools = "*"
-ujson = "*"  # for libsea_base (remove for production)
+twine = "*"
+wheel = "*"
 
 [packages]
 aiohttp = "*"
@@ -25,7 +26,7 @@ better-exceptions = "*"
 cchardet = "*"
 delorean = "*"
 ldap3 = "*"
-#libsea_base = "*"
+#sealib_base = "*"
 tenacity = "*"
 
 [requires]
