@@ -8,6 +8,7 @@ from ldap3 import ALL, ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES, Connection, N
 from os import getenv
 from os.path import abspath, dirname
 from sealib_base.base_api import BaseApi
+from tenacity import after_log, before_sleep_log, retry, retry_if_exception_type, stop_after_attempt, wait_random_exponential
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
@@ -29,11 +30,11 @@ class ActiveDirectoryApi(BaseApi):
     def __aexit__(self, exc_type, exc_val, exc_tb):
         BaseApi.__exit__(self, exc_type, exc_val, exc_tb)
 
-    # @retry(retry=retry_if_exception_type(ConnectionResetError),
-    #        wait=wait_random_exponential(multiplier=1.25, min=3, max=60),
-    #        after=after_log(logger, logging.DEBUG),
-    #        stop=stop_after_attempt(7),
-    #        before_sleep=before_sleep_log(logger, logging.DEBUG))
+    @retry(retry=retry_if_exception_type(ConnectionResetError),
+           wait=wait_random_exponential(multiplier=1.25, min=3, max=60),
+           after=after_log(logger, logging.DEBUG),
+           stop=stop_after_attempt(7),
+           before_sleep=before_sleep_log(logger, logging.DEBUG))
     async def get_users(self) -> dict:
         with Connection(self.adserver, auto_bind=True, user=getenv('AD_USER'),
                         password=getenv('AD_PASS'),
@@ -43,11 +44,11 @@ class ActiveDirectoryApi(BaseApi):
 
         return await self.process_results(results=[e['attributes'] for e in entries])
 
-    # @retry(retry=retry_if_exception_type(ConnectionResetError),
-    #        wait=wait_random_exponential(multiplier=1.25, min=3, max=60),
-    #        after=after_log(logger, logging.DEBUG),
-    #        stop=stop_after_attempt(7),
-    #        before_sleep=before_sleep_log(logger, logging.DEBUG))
+    @retry(retry=retry_if_exception_type(ConnectionResetError),
+           wait=wait_random_exponential(multiplier=1.25, min=3, max=60),
+           after=after_log(logger, logging.DEBUG),
+           stop=stop_after_attempt(7),
+           before_sleep=before_sleep_log(logger, logging.DEBUG))
     async def get_computers(self) -> dict:
         with Connection(self.adserver, auto_bind=True, user=getenv('AD_USER'),
                         password=getenv('AD_PASS'),
