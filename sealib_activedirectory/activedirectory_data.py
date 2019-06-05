@@ -1,9 +1,8 @@
-#!/usr/scripts/env python3.7
-"""Active Directory API Data: Jerod Gawne 2019.02.20 <https://github.com/jerodg>"""
+#!/usr/bin/env python3.7
+"""LibSEA: ActiveDirectory Data
+   Jerod Gawne 2019.02.20 <https://github.com/jerodg>"""
 import logging
 from dataclasses import dataclass
-from sys import exc_info
-from traceback import print_exception
 from typing import Any
 
 from os.path import basename
@@ -11,7 +10,6 @@ from os.path import basename
 logger = logging.getLogger(basename(__file__)[:-3])
 DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
-
 
 
 @dataclass()
@@ -57,7 +55,4 @@ class Computer:
 
 
 if __name__ == '__main__':
-    try:
         print(__doc__)
-    except Exception as excp:
-        logging.exception(print_exception(*exc_info()))
