@@ -7,7 +7,7 @@
 ![platform](https://img.shields.io/badge/platform-Linux-blue.svg)
 ![python](https://img.shields.io/badge/python-3.7%2B-blue.svg)
 ![license](https://img.shields.io/badge/license-Proprietary-red.svg)
-![88%](https://img.shields.io/badge/coverage-88%25-yellowgreen.svg)
+![82%](https://img.shields.io/badge/coverage-82%25-yellowgreen.svg)
 
 Active Directory REST client API module.
 
