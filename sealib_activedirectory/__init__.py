@@ -1,4 +1,4 @@
-#!/usr/scripts/env python3.7
+#!/usr/bin/env python3.7
 """LibSEA ActiveDirectory: Init
    Jerod Gawne, 2019.03.14 <https://github.com/jerodg/>"""
 

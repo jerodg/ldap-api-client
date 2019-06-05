@@ -1,11 +1,11 @@
-#!/usr/scripts/env python3.7
+#!/usr/bin/env python3.7
 """Test: Get Users
    Jerod Gawne, 2019.02.01 <https://github.com/jerodg/>"""
 import time
 
 import pytest
-
 from sealib_base.base_utils import bprint
+
 from sealib_activedirectory.activedirectory_api import ActiveDirectoryApi
 
 
