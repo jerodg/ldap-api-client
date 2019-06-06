@@ -11,5 +11,9 @@
 
 Active Directory REST client API module.
 
-## Documentation
-https://github.info53.com/pages/Fifth-Third/sea_lib_activedirectory/
+## Links
+[Bugs](https://github.info53.com/Fifth-Third/sea_lib_activedirectory/issues)
+
+[Package](http://slgramihqaims90.info53.com:3030/root/seapypi/sealib-activedirectory)
+
+[Source](https://github.info53.com/pages/Fifth-Third/sea_lib_activedirectory)
