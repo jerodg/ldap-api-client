@@ -1,5 +1,5 @@
 copyright: Copyright (c) 2019. Fifth Third Bancorp
-dev_addr: 0.0.0.0:8080
+
 google_analytics: null
 markdown_extensions:
   - smarty:
@@ -12,6 +12,10 @@ markdown_extensions:
       permalink: True
 nav:
   - Home: 'index.md'
+  - Location: 'location.md'
+  - Installation: 'install.md'
+  - Usage: 'use.md'
+  - Test: 'test.md'
 remote_branch: gh-pages
 remote_name: origin
 repo_url: https://github.info53.com/Fifth-Third/sea_lib_activedirectory
