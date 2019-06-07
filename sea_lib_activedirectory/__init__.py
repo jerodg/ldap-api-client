@@ -2,6 +2,6 @@
 """LibSEA ActiveDirectory: Init
    Jerod Gawne, 2019.03.14 <https://github.com/jerodg/>"""
 
-from sealib_activedirectory import activedirectory_api, activedirectory_data
+from sea_lib_activedirectory import activedirectory_api, activedirectory_data
 
 ___all___ = ['activedirectory_api', 'activedirectory_data']

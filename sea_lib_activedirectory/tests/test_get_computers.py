@@ -6,7 +6,7 @@ import time
 import pytest
 from sealib_base.base_utils import bprint
 
-from sealib_activedirectory.activedirectory_api import ActiveDirectoryApi
+from sea_lib_activedirectory.activedirectory_api import ActiveDirectoryApi
 
 
 @pytest.mark.asyncio

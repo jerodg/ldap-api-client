@@ -8,7 +8,7 @@ import traceback
 import setuptools
 
 logger = logging.getLogger(__name__)
-name = 'sealib_activedirectory'
+name = 'sea_lib_activedirectory'
 
 
 def readme() -> str:
@@ -18,7 +18,7 @@ def readme() -> str:
 
 if __name__ == '__main__':
     try:
-        setuptools.setup(name='sealib_activedirectory',
+        setuptools.setup(name='sea_lib_activedirectory',
                          version='1.0.0',
                          description='ActiveDirectory API Client Library',
                          long_description=readme(),
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                                            'cchardet',
                                            'delorean',
                                            'ldap3',
-                                           'sealib_base',
+                                           'sea_lib_base',
                                            'tenacity'],
                          include_package_data=True,
                          zip_safe=True,
@@ -61,6 +61,6 @@ if __name__ == '__main__':
                          project_urls={'Documentation': 'https://github.info53.com/pages/Fifth-Third/sea_lib_activedirectory',
                                        'Source': 'https://github.info53.com/Fifth-Third/sea_lib_activedirectory',
                                        'Bugs': 'https://github.info53.com/Fifth-Third/sea_lib_activedirectory/issues'},
-                         package_data={'sealib_activedirectory': ['LICENSE.txt.txt', 'README.md']})
+                         package_data={'sea_lib_activedirectory': ['LICENSE.txt.txt', 'README.md']})
     except Exception as excp:
         logger.exception(traceback.print_exception(*sys.exc_info()))

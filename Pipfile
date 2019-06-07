@@ -20,7 +20,7 @@ better-exceptions = "*"
 cchardet = "*"
 delorean = "*"
 ldap3 = "*"
-sealib_base = "*"
+sea_lib_base = "*"
 tenacity = "*"
 
 [requires]
