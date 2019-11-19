@@ -49,7 +49,7 @@ def main() -> NoReturn:
           entry_points={'console_scripts': []},
           include_package_data=True,
           install_requires=['base-api-client',
-                            'ldap3'
+                            'ldap3',
                             'tenacity'],
           keywords='ldap api client',
           license='Server Side Public License (SSPL)',
@@ -67,7 +67,7 @@ def main() -> NoReturn:
           setup_requires=[] + ['pytest-runner'] if {'pytest', 'test', 'ptr'}.intersection(sys.argv) else [],
           tests_require=['pytest', 'pytest-asyncio'],
           url='https://pypi.org/project/ldap-api-client/',
-          version='0!0.2.0',
+          version='0!0.4.0',
           zip_safe=True)
 
 

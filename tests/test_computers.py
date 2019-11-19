@@ -23,7 +23,7 @@ import pytest
 from os import getenv
 
 from base_api_client import bprint, Results, tprint
-from ldap_api_client import ActiveDirectoryApiClient
+from ldap_api_client import LDAPApiClient
 
 
 @pytest.mark.asyncio
@@ -31,7 +31,7 @@ async def test_get_all_computers():
     ts = time.perf_counter()
     bprint('Test: Get All Computers')
 
-    async with ActiveDirectoryApiClient(cfg=f'{getenv("CFG_HOME")}/activedirectory_api_client.toml') as adac:
+    async with LDAPApiClient(cfg=f'{getenv("CFG_HOME")}/ldap_api_client.toml') as adac:
         results = await adac.get_computers()
         # print(results)
 

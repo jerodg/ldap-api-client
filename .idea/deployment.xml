@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" promptOnRemoteOverwrite="CHECK_CONTENT" serverName="aims-prod: ldap-api-client" stopOnFirstError="true" deleteMissingItems="true" createEmptyFolders="true" filePermissions="493" folderPermissions="493" notifyRemoteChanges="true">
+  <component name="PublishConfigData" autoUpload="Always" serverName="aims-prod: ldap-api-client">
     <serverData>
       <paths name="aims-prod: ldap-api-client">
         <serverdata>
@@ -9,7 +9,7 @@
           </mappings>
           <excludedPaths>
             <excludedPath path="/opt/sea/ldap-api-client/.venv" />
-            <excludedPath local="true" path="$PROJECT_DIR$/../ldap-api-client/.idea" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.idea" />
           </excludedPaths>
         </serverdata>
       </paths>

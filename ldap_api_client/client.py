@@ -30,21 +30,26 @@ DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
-class ActiveDirectoryApiClient(BaseApiClient):
+class LDAPApiClient(BaseApiClient):
     AD_REPL: List[str] = ['CN=', 'DN=', 'OU=', 'DC=']
 
-    def __init__(self, cfg: Union[str, dict]):
+    def __init__(self, cfg: Union[str, dict], autoconnect=True):
         BaseApiClient.__init__(self, cfg=cfg)
         self.adserver: Server = Server(self.cfg['URI']['Base'], get_info=ALL)
-        self.connection: Connection = Connection(self.adserver, auto_bind=True, user=self.cfg['Auth']['Username'],
-                                                 password=self.cfg['Auth']['Password'],
-                                                 authentication=NTLM)
+
+        if autoconnect:
+            self.connection: Connection = Connection(self.adserver, auto_bind=True, user=self.cfg['Auth']['Username'],
+                                                     password=self.cfg['Auth']['Password'],
+                                                     authentication=NTLM)
+        else:
+            self.connection = None
 
     async def __aenter__(self):
         return self
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        self.connection.unbind()  # Close Connection
+        if self.connection:
+            self.connection.unbind()  # Close Connection
         await BaseApiClient.__aexit__(self, exc_type, exc_val, exc_tb)
 
     @retry(retry=retry_if_exception_type(ConnectionResetError),
@@ -70,6 +75,25 @@ class ActiveDirectoryApiClient(BaseApiClient):
                                                                paged_size=1000)
 
         return Results(data=entries, success=[e['attributes'] for e in entries])
+
+    async def check_credentials(self, username, password) -> Results:
+        """
+
+        Args:
+            username (str):
+            password (str):
+
+        Returns:
+            results (Results)"""
+        connection: Connection = Connection(self.adserver, user=username, password=password, authentication=NTLM)
+        connection.bind()
+
+        cr = connection.result
+
+        if cr['description'] == 'success':
+            return Results(data=connection.result, success=[cr])
+        else:
+            return Results(data=connection.result, failure=[cr])
 
 
 if __name__ == '__main__':

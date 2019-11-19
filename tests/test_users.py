@@ -23,7 +23,7 @@ import pytest
 from os import getenv
 
 from base_api_client import bprint, Results, tprint
-from ldap_api_client import ActiveDirectoryApiClient
+from ldap_api_client import LDAPApiClient
 
 
 @pytest.mark.asyncio
@@ -31,7 +31,7 @@ async def test_get_all_users():
     ts = time.perf_counter()
     bprint('Test: Get All Users')
 
-    async with ActiveDirectoryApiClient(cfg=f'{getenv("CFG_HOME")}/activedirectory_api_client.toml') as adac:
+    async with LDAPApiClient(cfg=f'{getenv("CFG_HOME")}/ldap_api_client.toml') as adac:
         results = await adac.get_users()
         # print(results)
 
@@ -40,5 +40,41 @@ async def test_get_all_users():
         assert not results.failure
 
         tprint(results, top=5)
+
+    bprint(f'-> Completed in {(time.perf_counter() - ts):f} seconds.')
+
+
+@pytest.mark.asyncio
+async def test_check_invalid_credentials():
+    ts = time.perf_counter()
+    bprint('Test: Check Invalid Credentials')
+
+    async with LDAPApiClient(cfg=f'{getenv("CFG_HOME")}/ldap_api_client.toml', autoconnect=False) as adac:
+        results = await adac.check_credentials(username='dm0001\\t84750b', password='wrongpassword')
+        # print(f'results: {results}')
+
+        assert type(results) is Results
+        assert len(results.failure) == 1
+        assert not results.success
+
+        tprint(results)
+
+    bprint(f'-> Completed in {(time.perf_counter() - ts):f} seconds.')
+
+
+@pytest.mark.asyncio
+async def test_check_valid_credentials():
+    ts = time.perf_counter()
+    bprint('Test: Check Valid Credentials')
+
+    async with LDAPApiClient(cfg=f'{getenv("CFG_HOME")}/ldap_api_client.toml', autoconnect=False) as adac:
+        results = await adac.check_credentials(username=adac.cfg['Auth']['Username'], password=adac.cfg['Auth']['Password'])
+        # print(f'results: {results}')
+
+        assert type(results) is Results
+        assert len(results.success) == 1
+        assert not results.failure
+
+        tprint(results)
 
     bprint(f'-> Completed in {(time.perf_counter() - ts):f} seconds.')
