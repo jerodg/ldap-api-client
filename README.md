@@ -27,13 +27,15 @@ pip install ldap-api-client
 ```python
 
 ```
-## API Implementation, Categories (0/2) 0%, Functions (4/6) ~66.7%
+## API Implementation, Categories (0/2) 0%, Functions (6/8) 75%
 - [ ] Computers:
     - [x] Get All Computers
-    - [ ] Get All Computers Filtered
+    - [x] Get All Computers Filtered
+    - [ ] Get All Computers Filtered by Date
 - [ ] Users:
     - [x] Get All Users
-    - [ ] Get All Users Filtered
+    - [x] Get All Users Filtered
+    - [ ] Get All Users Filtered by Date
     - [x] Check Invalid Credentials
     - [x] Check Valid Credentials
     

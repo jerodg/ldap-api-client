@@ -18,20 +18,23 @@ copies or substantial portions of the Software.
 You should have received a copy of the SSPL along with this program.
 If not, see <https://www.mongodb.com/licensing/server-side-public-license>."""
 import logging.config
-from typing import List, Union
+from typing import Union
 
-from ldap3 import ALL, ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES, Connection, NTLM, Server
+from ldap3 import ALL, Connection, NTLM, Server
 from tenacity import after_log, before_sleep_log, retry, retry_if_exception_type, stop_after_attempt, wait_random_exponential
 
 from base_api_client import BaseApiClient, Results
+from ldap_api_client.models import ComputerQuery, Query, UserQuery
 
 logger = logging.getLogger(__name__)
 DBG = logger.isEnabledFor(logging.DEBUG)
 NFO = logger.isEnabledFor(logging.INFO)
 
 
+# todo: date filter for lastlogon, created, changed
+
+
 class LDAPApiClient(BaseApiClient):
-    AD_REPL: List[str] = ['CN=', 'DN=', 'OU=', 'DC=']
 
     def __init__(self, cfg: Union[str, dict], autoconnect=True):
         BaseApiClient.__init__(self, cfg=cfg)
@@ -39,8 +42,7 @@ class LDAPApiClient(BaseApiClient):
 
         if autoconnect:
             self.connection: Connection = Connection(self.adserver, auto_bind=True, user=self.cfg['Auth']['Username'],
-                                                     password=self.cfg['Auth']['Password'],
-                                                     authentication=NTLM)
+                                                     password=self.cfg['Auth']['Password'])
         else:
             self.connection = None
 
@@ -57,22 +59,12 @@ class LDAPApiClient(BaseApiClient):
            after=after_log(logger, logging.DEBUG),
            stop=stop_after_attempt(7),
            before_sleep=before_sleep_log(logger, logging.DEBUG))
-    async def get_users(self) -> Results:
-        entries = self.connection.extend.standard.paged_search('dc=dm0001,dc=info53,dc=com', '(objectClass=person)',
-                                                               attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES],
-                                                               paged_size=1000)
-
-        return Results(data=entries, success=[e['attributes'] for e in entries])
-
-    @retry(retry=retry_if_exception_type(ConnectionResetError),
-           wait=wait_random_exponential(multiplier=1.25, min=3, max=60),
-           after=after_log(logger, logging.DEBUG),
-           stop=stop_after_attempt(7),
-           before_sleep=before_sleep_log(logger, logging.DEBUG))
-    async def get_computers(self) -> Results:
-        entries = self.connection.extend.standard.paged_search('dc=dm0001,dc=info53,dc=com', '(objectClass=computer)',
-                                                               attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES],
-                                                               paged_size=1000)
+    async def get_records(self, query: Union[Query, ComputerQuery, UserQuery]) -> Results:
+        entries = self.connection.extend.standard.paged_search(search_base=query.search_base or self.cfg['Defaults']['SearchBase'],
+                                                               search_filter=query.search_filter,
+                                                               search_scope=query.search_scope,
+                                                               attributes=query.attributes,
+                                                               paged_size=query.paged_size)
 
         return Results(data=entries, success=[e['attributes'] for e in entries])
 
