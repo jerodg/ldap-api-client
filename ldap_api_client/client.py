@@ -41,8 +41,11 @@ class LDAPApiClient(BaseApiClient):
         self.adserver: Server = Server(self.cfg['URI']['Base'], get_info=ALL)
 
         if autoconnect:
-            self.connection: Connection = Connection(self.adserver, auto_bind=True, user=self.cfg['Auth']['Username'],
-                                                     password=self.cfg['Auth']['Password'])
+            self.connection: Connection = Connection(self.adserver,
+                                                     auto_bind=True,
+                                                     user=self.cfg['Auth']['Username'],
+                                                     password=self.cfg['Auth']['Password'],
+                                                     authentication=self.cfg['Auth']['Type'] or None)
         else:
             self.connection = None
 
@@ -77,7 +80,10 @@ class LDAPApiClient(BaseApiClient):
 
         Returns:
             results (Results)"""
-        connection: Connection = Connection(self.adserver, user=username, password=password, authentication=NTLM)
+        connection: Connection = Connection(self.adserver,
+                                            user=username,
+                                            password=password,
+                                            authentication=self.cfg['Auth']['Type'] or None)
         connection.bind()
 
         cr = connection.result

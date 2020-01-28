@@ -18,8 +18,9 @@
 #If not, see <https://www.mongodb.com/licensing/server-side-public-license>.
 
 [Auth]
-    Username = ""
+    Username = ""  # if Type is NTLM Username must be domain\username
     Password = ""
+    Type = ""
 
 [URI]
     Base = ""  # Required

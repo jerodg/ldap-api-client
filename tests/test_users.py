@@ -52,7 +52,7 @@ async def test_get_all_users_filtered():
 
     async with LDAPApiClient(cfg=f'{getenv("CFG_HOME")}/ldap_api_client.toml') as adac:
         results = await adac.get_records(Query(search_base=adac.cfg['Defaults']['SearchBase'],
-                                               search_filter='(cn=*24620a)'))
+                                               search_filter='(cn=t24620a)'))
         # print(results)
 
         assert type(results) is Results

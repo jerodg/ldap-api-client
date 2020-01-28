@@ -2,27 +2,13 @@
   "Auth": {
     "Username": "",
     "Password": "",
-    "Header": "",
-    "Token": ""
+    "Type": "",
   },
   "URI": {
     "Base": ""
   },
   "Options": {
-    "CAPath": "",
-    "VerifySSL": true,
     "Debug": false,
-    "SEM": 15,
-    "Content_Type": "application/json; charset=utf-8"
-  },
-  "Proxy": {
-    "URI": "",
-    "Port": "",
-    "Username": "",
-    "Password": ""
-  },
-  "Cache": {
-    "Path": "",
-    "Type": ""
+    "SEM": 1,
   }
 }
