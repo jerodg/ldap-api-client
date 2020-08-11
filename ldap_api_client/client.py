@@ -23,7 +23,8 @@ from typing import Union
 from ldap3 import ALL, Connection, NTLM, Server
 from tenacity import after_log, before_sleep_log, retry, retry_if_exception_type, stop_after_attempt, wait_random_exponential
 
-from base_api_client import BaseApiClient, Results
+from base_api_client import BaseApiClient
+from base_api_client.models import Results
 from ldap_api_client.models import ComputerQuery, Query, UserQuery
 
 logger = logging.getLogger(__name__)
